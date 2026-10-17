@@ -1,0 +1,58 @@
+# ============================================================================
+#  campus-login.sh 配置示例
+#
+#  用法：
+#    1) 复制到路由器上的持久分区：
+#         cp campus-login.conf.example /etc/storage/campus/campus-login.conf
+#    2) 编辑它，填入你自己的信息
+#    3) 权限收紧（里面有密码）：
+#         chmod 600 /etc/storage/campus/campus-login.conf
+#
+#  ⚠️ 这个文件里有明文密码：不要提交到 git，不要发到任何地方。
+# ============================================================================
+
+# ---- 认证门户地址（不加 http://）----
+# 怎么找：抓包时看请求的 URL，或者浏览器地址栏里那个 IP
+PORTAL_IP="10.0.0.1"
+
+
+# ---- 你的账号 ----
+# 注意：
+#   有些学校要带域名后缀（如 account@domain）
+#   有些学校要带前缀（看 pageInfo 返回的 prefixName / prefixValue）
+#   ⚠️ 这里填【明文原值】，脚本会自己按需做双重 URL 编码
+ACCOUNT="YOUR_ACCOUNT"
+
+
+# ---- 你的密码 ----
+# ⚠️ 只有当 pageInfo 返回 passwordEncrypt=false 时，这里才是明文
+#    如果返回 true，需要改 campus-login.sh 里的 do_login() 走 RSA 分支
+PASSWORD="YOUR_PASSWORD"
+
+
+# ---- WAN 接口名 ----
+# 怎么找：
+#     ip addr
+#     ip route            # 看 default 走哪个接口
+#     ifconfig
+# 常见值：eth0 / eth3 / eth4 / wan / pppoe-wan
+WAN_IF="eth0"
+
+
+# ---- 轮询间隔（秒）----
+# ⚠️⚠️ 千万不要低于 120
+#   秒级轮询会把小路由器压到卡死（硬件看门狗静默复位），详见 docs/04
+#   300 = 掉线最多 5 分钟恢复，完全够用
+INTERVAL=300
+
+
+# ---- 探测地址（可选，脚本里有默认值）----
+# 必须是一个"在线时返回 HTTP 204 且响应体为空"的地址
+# PROBE="http://connectivitycheck.platform.hicloud.com/generate_204"
+# PROBE_ALT="http://www.gstatic.com/generate_204"
+
+
+# ---- 日志（可选）----
+# ⚠️ 不要放在 /tmp —— 那是 tmpfs，重启即失
+# LOG="/tmp/campus-login.log"
+# MAXLOG=300

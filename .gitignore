@@ -1,0 +1,49 @@
+# ---- 真实配置（绝对不要提交）----
+campus-login.conf
+*.conf
+!examples/*.conf.example
+
+# ---- 抓包产物（里面一定有你的账号密码令牌！）----
+captured-requests.txt
+captured-bodies/
+captcha.jpg
+captcha.png
+interception-raw.txt
+post_login.html
+post-login.html
+*.har
+
+# ---- ⚠️ 门户前端源码：厂商专有代码，且含你学校的名称/IP ----
+#      千万不要提交（详见 docs/08）
+portal-src/
+AuthInterFace.js
+login_bch.js
+security.js
+index.jsp
+*_bch.js
+
+# ---- 运行时日志 ----
+*.log
+campus-curl.sh
+campus-params.txt
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# ---- 编辑器 / 系统 ----
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# ---- 临时文件 ----
+*.tmp
+*.bak
+*.bak-*
