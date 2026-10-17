@@ -7,6 +7,8 @@
 
 > 如果你不愿意看枯燥的技术文档也可以直接把仓库给智能体，然后说"按 skills/ruijie-eportal-autologin/SKILL.md，帮我在这台路由器上部署校园网自动登录"
 
+> 欢迎在issue里提出成功使用本项目的学校，方便为后来者进行参考！ 
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Shell](https://img.shields.io/badge/Shell-busybox--compatible-blue.svg)](#兼容性)
